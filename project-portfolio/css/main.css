@@ -1,0 +1,32 @@
+.container {
+ 	font-family: "Lato", sans-serif;
+ 	color: #666677;
+ 	display: grid;
+}
+
+header h1 {
+	font-weight: 400;
+	font-size: 50px;
+}
+
+header h4 {
+	font-weight: 400;
+	font-size: 25px;
+}
+
+hr {
+	height: 10px;
+}
+
+.logo {
+	width: 100px;
+	margin-top: 15px;
+}
+
+h2 {
+	color: #bbbbbb;
+}
+
+.portfolio-img {
+	cursor: wait;
+}
