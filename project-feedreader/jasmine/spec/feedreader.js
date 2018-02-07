@@ -33,12 +33,10 @@ $(function() {
          * and that the URL is not empty.
          */
         it('has URL' , function(){
-            var checkElement = 0;
-            while(checkElement< allFeeds.length){
-                expect(allFeeds[checkElement].url).toBeDefined();                 
-                expect(allFeeds[checkElement].url).not.toBe(''); 
-                checkElement++;               
-            }
+            allFeeds.forEach(function(feed){
+                expect(feed.url).toBeDefined();
+                expect(feed.url).not.toBe('');
+            });
         });
         
         /* TODO: Write a test that loops through each feed
@@ -46,12 +44,10 @@ $(function() {
          * and that the name is not empty.
          */
         it('has name defined' , function(){
-            var checkElement = 0;
-            while(checkElement< allFeeds.length){
-                expect(allFeeds[checkElement].name).toBeDefined();                 
-                expect(allFeeds[checkElement].name).not.toBe(''); 
-                checkElement++;               
-            }
+            allFeeds.forEach(function(feed){
+                expect(feed.name).toBeDefined();
+                expect(feed.name).not.toBe('');
+            });
         });       
     });
 
@@ -82,22 +78,21 @@ $(function() {
     
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
-        beforeEach(function(done) {
-            loadFeed(0, function() {
-            done();
-            });
-        });
+
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         it('at least an entry when loadFeed completed', function(done) {
-            expect($('.feed .entry')[0]).not.toBe('');
-            done();
-         });
+        beforeEach(function(done) {
+            loadFeed(0, done);
+        });
+        it('at least an entry when loadFeed completed', function(done) {
+        expect($('.feed .entry').length).toBeGreaterThan(0);
+        done();
     });
+});
     
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
@@ -107,18 +102,17 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
             var before, after;
-            beforeEach(function(done) {
-                loadFeed(0, function() {
-                    before = $('.feed').find('h2').text();
-                    done();
+            beforeEach(function(done){
+                loadFeed(0, function(){
+                    before=$('.feed').text();
+                    loadFeed(1,function(){
+                        after=$('.feed').text();
+                        done();
+                    });
                 });
             });
-            it('content changes when reload', function(done) {
-                loadFeed(1, function() {
-                    after = $('.feed').find("h2").text();
-                    expect(before).not.toEqual(after);
-                    done();
-                });
+            it('a new feed is loaded by loadFeed', function(){
+                expect(after).not.toBe(before);
             });
     });
 }());
