@@ -18,15 +18,22 @@
 			(3) Make sure wait returns the Promise too!
 			 */
 
-			 
+			let promise = new Promise((resolve, reject)=>{
+				window.setTimeout(function() {
+					resolve();
+				}, ms);
+				console.log(this);
+			});
+
+			return promise;
 		};
 
 		/*
 		Uncomment these lines when you want to test!
 		You'll know you've done it right when the message on the page changes.
 		 */
-		// var milliseconds = 2000;
-		// wait(milliseconds).then(finish);
+		var milliseconds = 2000;
+		wait(milliseconds).then(finish);
 
 
 		// This is just here to help you test.
