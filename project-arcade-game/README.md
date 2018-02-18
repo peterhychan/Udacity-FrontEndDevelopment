@@ -14,15 +14,6 @@ This is a basic Arcade Game project written in JavaScript. You are the small car
 
 To play the game, simply download the repository and open `index.html` by any Internet browser.. 
 
-## Project contents
-
-The project is structured as followed:
-
-* main folder contains the actual index.html page with the game, README and other files.
-* `/css` folder contains the styling of the page
-* `/js` folder contains the javascript file describing the mechanics of the game
-* `/img` folder contains the images used for the game 
-
 ## Bugs
 
 The game is still under-development as the game will continue as long as the player does not close the browser manually.
