@@ -1,7 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import { Route } from 'react-router'
+import { Route, Switch } from 'react-router'
 import SearchPage from './SearchPage';
 import HomePage from './HomePage';
 
@@ -40,18 +40,25 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
+
+      <Switch>
         <Route path="/search" render={() => (
           <SearchPage books={this.state.books}
                       filterBooks={this.filterBooks}
                       changeBookShelf={this.changeBookShelf}
           />
         )}/>
+
         <Route path="/" exact render={() => (
           <HomePage books={this.state.books}
                     filterBooks={this.filterBooks}
                     changeBookShelf={this.changeBookShelf}
           />
+
+
         )}/>
+         <Route path="*" render ={() => <div>404 Page Not Found </div>} /> 
+        </Switch>
       </div>
     );
   }
